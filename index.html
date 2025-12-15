@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     
+    <link rel="icon" type="image/png" href="images/profile.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     
@@ -100,16 +102,18 @@
             margin-top: 3rem;
         }
 
-        /* --- FINAL AVATAR FIX --- */
+        /* --- AVATAR STYLE --- */
         .avatar-frame {
             width: 140px;
             height: 140px;
             margin: 0 auto 1.5rem auto;
             border-radius: 50%;
             border: 3px solid var(--border);
-            /* Standard Overflow clipping without fancy filters usually renders best */
             overflow: hidden; 
-            background: var(--bg-color); /* Prevents transparent artifacts */
+            background: var(--bg-color);
+            /* Force GPU rendering for smooth circle clipping */
+            transform: translateZ(0);
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
         }
 
         .avatar-frame img {
@@ -117,7 +121,6 @@
             height: 100%;
             object-fit: cover;
             object-position: top center;
-            /* Standard browser rendering is best for high-res downscaling */
             image-rendering: auto; 
         }
 
@@ -172,7 +175,7 @@
         .project-link { font-size: 0.9rem; margin-left: 10px; color: var(--accent); }
         .project-desc { color: var(--text-sub); margin-top: 1rem; max-width: 800px; }
         
-        /* Restored List Styling */
+        /* List Styling */
         .project-desc ul { margin-left: 1.5rem; margin-top: 1rem; margin-bottom: 1rem; }
         .project-desc li { margin-bottom: 0.5rem; }
         .project-desc strong { color: white; }
@@ -202,7 +205,7 @@
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="avatar-frame">
-                <img src="https://raw.githubusercontent.com/shivangsagwaliya/ShivangSagwaliya.github.io/main/images/profile.jpg" alt="Profile">
+                <img src="images/profile.png" alt="Profile">
             </div>
             <h2>Shivang Sagwaliya</h2>
             <p style="font-size: 0.85rem; color: var(--accent);">Data Analytics & BI</p>
@@ -314,7 +317,7 @@
                     <p>Engineered a centralized SQL Datawarehouse using medallion architecture with automated pipelines for data cleaning, standardization, and transformation.</p>
                 </div>
                 <div class="project-image-container">
-                    <img src="images/Medallion_architecture.webp" alt="Data Warehouse Architecture">
+                    <img src="https://raw.githubusercontent.com/shivangsagwaliya/ShivangSagwaliya.github.io/main/images/Medallion_architecture.webp" alt="Data Warehouse Architecture">
                 </div>
             </div>
             
@@ -332,11 +335,11 @@
 
         <section id="contact" style="border-top: 1px solid var(--border); padding-top: 3rem;">
             <h2 style="font-size: 1.5rem; margin-bottom: 1rem;">Let's Connect</h2>
-            <form method="post" action="mailto:shivangsagwaliya@gmail.com" enctype="text/plain" style="max-width: 500px; display: flex; flex-direction: column; gap: 10px;">
-                <input type="text" name="name" placeholder="Name" style="background: var(--card-bg); border: 1px solid var(--border); padding: 10px; color: white;">
-                <input type="email" name="email" placeholder="Email" style="background: var(--card-bg); border: 1px solid var(--border); padding: 10px; color: white;">
-                <textarea name="message" placeholder="Message" rows="5" style="background: var(--card-bg); border: 1px solid var(--border); padding: 10px; color: white;"></textarea>
-                <button type="submit" style="background: white; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; width: fit-content;">Send</button>
+            <form action="https://formspree.io/f/xblnegnq" method="POST" style="max-width: 500px; display: flex; flex-direction: column; gap: 10px;">
+                <input type="text" name="name" placeholder="Name" autocomplete="name" style="background: var(--card-bg); border: 1px solid var(--border); padding: 10px; color: white;" required>
+                <input type="email" name="email" placeholder="Email" autocomplete="email" style="background: var(--card-bg); border: 1px solid var(--border); padding: 10px; color: white;" required>
+                <textarea name="message" placeholder="Message" rows="5" style="background: var(--card-bg); border: 1px solid var(--border); padding: 10px; color: white;" required></textarea>
+                <button type="submit" style="background: white; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; width: fit-content;">Send Message</button>
             </form>
         </section>
 
