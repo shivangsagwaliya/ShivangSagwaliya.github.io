@@ -18,8 +18,8 @@
         html { scroll-behavior: smooth; }
 
         :root {
-            --bg-color: #0f0f0f;       
-            --card-bg: #1a1a1a;        
+            --bg-color: #0f0f0f;        
+            --card-bg: #1a1a1a;         
             --text-main: #ffffff;
             --text-sub: #cccccc;
             --border: #333333;
@@ -73,7 +73,6 @@
             transition: 0.3s;
         }
 
-        /* Hamburger Animation */
         .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
         .menu-toggle.active span:nth-child(2) { opacity: 0; }
         .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
@@ -102,7 +101,6 @@
             margin-top: 3rem;
         }
 
-        /* --- AVATAR STYLE --- */
         .avatar-frame {
             width: 140px;
             height: 140px;
@@ -111,7 +109,6 @@
             border: 3px solid var(--border);
             overflow: hidden; 
             background: var(--bg-color);
-            /* Force GPU rendering for smooth circle clipping */
             transform: translateZ(0);
             -webkit-mask-image: -webkit-radial-gradient(white, black);
         }
@@ -121,7 +118,6 @@
             height: 100%;
             object-fit: cover;
             object-position: top center;
-            image-rendering: auto; 
         }
 
         .sidebar h2 { font-size: 1.5rem; color: white; margin-bottom: 0.5rem; }
@@ -142,7 +138,6 @@
 
         .sidebar-footer { text-align: center; font-size: 0.8rem; color: #555; }
 
-        /* --- OVERLAY --- */
         .overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -175,16 +170,89 @@
         .project-link { font-size: 0.9rem; margin-left: 10px; color: var(--accent); }
         .project-desc { color: var(--text-sub); margin-top: 1rem; max-width: 800px; }
         
-        /* List Styling */
         .project-desc ul { margin-left: 1.5rem; margin-top: 1rem; margin-bottom: 1rem; }
         .project-desc li { margin-bottom: 0.5rem; }
         .project-desc strong { color: white; }
 
+        /* Image Containers */
         .project-image-container {
-            width: 100%; background: var(--card-bg); border: 1px solid var(--border);
-            border-radius: 8px; overflow: hidden; padding: 10px; margin-top: 1rem;
+            width: 100%; 
+            background: var(--card-bg); 
+            border: 1px solid var(--border);
+            border-radius: 8px; 
+            overflow: hidden; 
+            margin-top: 1.5rem;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
+
+        .project-image-container:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            cursor: pointer;
+        }
+
         .project-image-container img { width: 100%; height: auto; display: block; border-radius: 4px; }
+
+        /* --- SLIDER STYLES (For Housing Project) --- */
+        .slider-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1.5rem;
+        }
+
+        .slides-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Keeps entire image visible */
+            background: #2a2a2a; 
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+        }
+
+        .slide-img.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 5;
+        }
+
+        /* Slider Controls */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .slider-btn:hover { background: var(--accent); }
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
 
         @media (max-width: 600px) {
             .sidebar { width: 85%; right: -100%; } 
@@ -293,22 +361,58 @@
                     <ul>
                         <li><strong>Financial Impact:</strong> Identified $170,100 in active revenue at risk.</li>
                         <li><strong>Operational Bottleneck:</strong> Diagnosed a consistent 40-minute wait time spike at 2 PM.</li>
-                        <li><strong>Asset Reliability:</strong> Flagged Truck_8 as a high-risk liability.</li>
                     </ul>
                 </div>
-                <div class="project-image-container">
+                <a href="https://github.com/shivangsagwaliya/Smart-Logistics-Delay-Report" class="project-image-container" style="display:block;">
                     <img src="https://raw.githubusercontent.com/shivangsagwaliya/Smart-Logistics-Delay-Report/main/Logistics_Report.PNG" alt="Smart Logistics Dashboard">
-                </div>
+                </a>
             </div>
 
             <div class="project">
-                <div class="project-title">Marketing Data Cleaning Using Python Pandas<a href="https://github.com/shivangsagwaliya/Marketing-Data-Cleaning" class="project-link"><i class="fab fa-github"></i></a></div>
+                <div class="project-title">Housing Data Analysis <a href="https://github.com/shivangsagwaliya/Housing-Data-Analysis" class="project-link"><i class="fab fa-github"></i></a></div>
+                <div class="project-desc">
+                    <p>A comprehensive market analysis report analyzing over 13 Billion in revenue across major regions. Key focus on Sales Performance, Regional Distribution, and Economic Indicators.</p>
+                    <ul>
+                        <li><strong>Market Overview:</strong> Analyzed 13bn in revenue with an average deal size of 2M. Sales heavily dominated by Villa properties (38%).</li>
+                        <li><strong>Regional Dominance:</strong> Identified Zealand (95bn) and Jutland (81bn) as the primary revenue drivers.</li>
+                        <li><strong>Economic Impact:</strong> Evaluated the correlation between Inflation, Interest Rates, and Rental Yields across property types (Farm vs Apartments).</li>
+                    </ul>
+                </div>
+                
+                <div class="slider-wrapper">
+                    <div class="slides-container" id="housing-slides">
+                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/Housing-Data-Analysis/main/Dashboard/Housing_1.PNG" class="slide-img active" alt="Market Overview">
+                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/Housing-Data-Analysis/main/Dashboard/Housing_2.PNG" class="slide-img" alt="Sales Performance">
+                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/Housing-Data-Analysis/main/Dashboard/Housing_3.PNG" class="slide-img" alt="Economic Indicators">
+                    </div>
+                    <button class="slider-btn prev-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <p style="font-size: 0.8rem; color: #666; margin-top: 5px; text-align: right;"><i class="fas fa-images" style="color: var(--accent);"></i> Interactive Gallery</p>
+            </div>
+
+            <div class="project">
+                <div class="project-title">Marketing Data Cleaning <a href="https://github.com/shivangsagwaliya/Marketing-Data-Cleaning" class="project-link"><i class="fab fa-github"></i></a></div>
                 <div class="project-desc">
                     <p>Engineered a robust data cleaning pipeline using Python and Pandas to standardize messy marketing campaign data, resolving inconsistencies in currency, datetime logic, and categorical integrity.</p>
                 </div>
-                <div class="project-image-container">
+                <a href="https://github.com/shivangsagwaliya/Marketing-Data-Cleaning" class="project-image-container" style="display:block;">
                     <img src="https://raw.githubusercontent.com/shivangsagwaliya/Marketing-Data-Cleaning/main/Python_Data_Cleaning.png" alt="Python_Data_Cleaning">
+                </a>
+            </div>
+
+            <div class="project">
+                <div class="project-title">Coffee Sales Analytics <a href="https://github.com/shivangsagwaliya/coffee-sales-analytics-project" class="project-link"><i class="fab fa-github"></i></a></div>
+                <div class="project-desc">
+                    <p>A hybrid Business Intelligence project demonstrating full-cycle data analysis: Advanced Data Cleaning in Excel, Relational Modeling & Dashboarding in Power BI.</p>
+                      <ul>
+                        <li><strong>Financial Impact:</strong> The company generated $45.13K in Total Revenue with a healthy +18.6% Year-over-Year (YoY) Growth.</li>
+                        <li><strong>Top Revenue Driver:</strong> Excelsa beans are the best seller, generating $12.3K in sales.</li>
+                    </ul>
                 </div>
+                <a href="https://github.com/shivangsagwaliya/coffee-sales-analytics-project" class="project-image-container" style="display:block;">
+                    <img src="https://raw.githubusercontent.com/shivangsagwaliya/coffee-sales-analytics-project/main/Coffee_Sales.PNG" alt="Coffee Sales Dashboard">
+                </a>
             </div>
 
             <div class="project">
@@ -316,9 +420,9 @@
                 <div class="project-desc">
                     <p>Engineered a centralized SQL Datawarehouse using medallion architecture with automated pipelines for data cleaning, standardization, and transformation.</p>
                 </div>
-                <div class="project-image-container">
+                <a href="https://github.com/shivangsagwaliya/sql-data-warehouse" class="project-image-container" style="display:block;">
                     <img src="https://raw.githubusercontent.com/shivangsagwaliya/ShivangSagwaliya.github.io/main/images/Medallion_architecture.webp" alt="Data Warehouse Architecture">
-                </div>
+                </a>
             </div>
             
             <div class="project">
@@ -326,36 +430,19 @@
                 <div class="project-desc">
                     <p>Analyzed and built a dynamic report monitoring $435M+ in funded loans across 38,000 applications.</p>
                 </div>
-                <div class="project-image-container">
+                <a href="https://github.com/shivangsagwaliya/Bank-Loan-Analytics" class="project-image-container" style="display:block;">
                     <img src="https://raw.githubusercontent.com/shivangsagwaliya/Bank-Loan-Analytics/main/dashboard_images/Overview.PNG" alt="Bank Loan Analytics">
-                </div>
+                </a>
             </div>
-            
+
              <div class="project">
-                <div class="project-title">Coffee Sales Analytics <a href="https://github.com/shivangsagwaliya/coffee-sales-analytics-project" class="project-link"><i class="fab fa-github"></i></a></div>
-                <div class="project-desc">
-                    <p>A hybrid Business Intelligence project demonstrating full-cycle data analysis: Advanced Data Cleaning in Excel Relational Modeling & Dashboarding in Power BI.</p>
-                     <ul>
-                        <li><strong>Financial Impact:</strong> The company generated $45.13K in Total Revenue with a healthy +18.6% Year-over-Year (YoY) Growth.</li>
-                        <li><strong>Primary Market:</strong> The United States is the overwhelming leader, contributing $36K (approx. 80%) of total revenue..</li>
-                        <li><strong>Top Revenue Driver:</strong> Excelsa beans are the best seller, generating $12.3K in sales.</li>
-                        <li><strong>Fastest Growing:</strong> While Robusta has the lowest total sales ($9K), it has the highest growth rate (+23.2%), indicating rising popularity.</li>
-                        <li><strong>Growth Consistency:</strong> All 4 coffee types (Arabica, Excelsa, Liberica, Robusta) are showing double-digit growth (+13% to +23%), proving a strong overall market demand.</li>
-                    </ul>
-                </div>
-                <div class="project-image-container">
-                     <img src="https://raw.githubusercontent.com/shivangsagwaliya/coffee-sales-analytics-project/main/Coffee_Sales.PNG" alt="Coffee Sales Dashboard">
-                </div>
-            </div>
-            
-            <div class="project">
                 <div class="project-title"> Netflix Exploratory Data Analysis <a href="https://github.com/shivangsagwaliya/netflix_sql_project/" class="project-link"><i class="fab fa-github"></i></a></div>
                 <div class="project-desc">
                     <p>Leveraged SQL to analyze Netflix's content library, uncovering trends in genre popularity, release patterns, and regional preferences to drive data-backed content strategies.</p>
                 </div>
-                <div class="project-image-container">
+                <a href="https://github.com/shivangsagwaliya/netflix_sql_project/" class="project-image-container" style="display:block;">
                      <img src="https://raw.githubusercontent.com/shivangsagwaliya/netflix_sql_project/main/Logo/netflix_logo.png" alt="Netflix Logo">
-                </div>
+                </a>
             </div>
 
         </section>
@@ -373,19 +460,33 @@
     </div>
 
     <script>
+        // Menu Toggle
         function toggleMenu() {
             const toggle = document.querySelector('.menu-toggle');
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
-            
             toggle.classList.toggle('active');
             sidebar.classList.toggle('active');
             overlay.classList.toggle('active');
         }
-
         document.getElementById('overlay').addEventListener('click', toggleMenu);
+
+        // --- IMAGE SLIDER LOGIC ---
+        let currentSlide = 0;
+        function changeSlide(direction) {
+            const slides = document.querySelectorAll('.slide-img');
+            const totalSlides = slides.length;
+            
+            // Remove active class from current
+            slides[currentSlide].classList.remove('active');
+            
+            // Calculate new index
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            
+            // Add active class to new
+            slides[currentSlide].classList.add('active');
+        }
     </script>
 
 </body>
 </html>
-
