@@ -194,41 +194,43 @@
 
         .project-image-container img { width: 100%; height: auto; display: block; border-radius: 4px; }
 
-        /* --- SLIDER STYLES (For Housing Project) --- */
+        /* --- SLIDER STYLES (For Dashboard Project) --- */
         .slider-wrapper {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 9;
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 8px;
             overflow: hidden;
             margin-top: 1.5rem;
+            min-height: 400px;
         }
 
         .slides-container {
             width: 100%;
-            height: 100%;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
         }
 
         .slide-img {
             width: 100%;
-            height: 100%;
-            object-fit: contain; /* Keeps entire image visible */
-            background: #2a2a2a; 
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-            pointer-events: none;
+            height: auto;
+            display: none;
+            object-fit: contain;
+            background: #1a1a1a;
         }
 
         .slide-img.active {
-            opacity: 1;
-            pointer-events: auto;
-            z-index: 5;
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Slider Controls */
@@ -236,23 +238,57 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             cursor: pointer;
-            z-index: 10;
+            z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: 0.2s;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
         }
 
-        .slider-btn:hover { background: var(--accent); }
+        .slider-btn:hover { 
+            background: var(--accent); 
+            transform: translateY(-50%) scale(1.1);
+        }
         .prev-btn { left: 15px; }
         .next-btn { right: 15px; }
+
+        /* Slide Indicators */
+        .slide-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 100;
+        }
+
+        .slide-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slide-dot.active {
+            background: var(--accent);
+            width: 25px;
+            border-radius: 5px;
+        }
+
+        .slide-dot:hover {
+            background: rgba(255, 255, 255, 0.6);
+        }
 
         @media (max-width: 600px) {
             .sidebar { width: 85%; right: -100%; } 
@@ -355,47 +391,72 @@
             <h3 style="color: var(--text-sub); text-transform: uppercase; font-size: 0.9rem; margin-bottom: 2rem; border-left: 3px solid var(--accent); padding-left: 10px;">Selected Case Studies</h3>
 
             <div class="project">
-                <div class="project-title">Bank Loan Analytics & Risk Monitoring | Tools: Power BI, SQL <a href="https://github.com/shivangsagwaliya/Bank-Loan-Analytics" class="project-link"><i class="fab fa-github"></i></a></div>
+                <div class="project-title">TechCorp Solutions Data Warehouse | SQL, MSSQL SERVER <a href="https://github.com/shivangsagwaliya//tech_corp_solutions_data_warehouse" class="project-link"><i class="fab fa-github"></i></a></div>
                 <div class="project-desc">
-                    <p>The bank lacked a centralized view of its lending portfolio, leading to difficulties in assessing "Good" vs. "Bad" loan exposure and tracking regional performance. Stakeholders needed a consolidated view of over 38,000 application records to answer critical questions about portfolio health and repayment trends</p>
+                    <p>Engineered a centralized SQL Datawarehouse using medallion architecture with automated pipelines for data cleaning, standardization, and transformation.</p>
                     <ul>
-                        <li><strong>Portfolio Management:</strong> Designed a centralized Power BI dashboard to monitor 38.6K loan applications and $435M in funded capital, bridging the gap between raw data and executive decision-making.</li>
-                        <li><strong>Data Engineering & Validation:</strong> Utilized SQL CTEs and Window Functions (LAG) to engineer Month-over-Month (MoM) growth metrics, strictly validating Power BI results against backend database logic to ensure 100% accuracy.</li>
-                        <li><strong>Risk & Profitability Analysis:</strong> Segmented the portfolio into Good Loans (86.2%) vs. Bad Loans (13.8%), revealing a net profitability of $38M (Total Received $473M vs. Funded $435M) despite default risks.</li>
-                        <li><strong>Strategic Insights:</strong> Identified high-risk borrower profiles, correlating specific "Renters" and "Small Business" segments with higher DTI ratios, enabling stakeholders to refine credit scoring models.</li>
+                        <li><strong>Architected scalable enterprise data warehouse using Medallion Architecture (Bronze/Silver/Gold layers) integrating 5 data sources (customers, products, suppliers, employees, orders) with 193K+ transactions into unified analytical platform</strong></li>
+                        <li><strong>Designed Star Schema </strong> with 1 fact table and 5 dimension tables enabling fast query performance and business-ready analytics for sales, customer, and operational metrics</li>
+                        <li><strong>Reduced reporting latency by 40%</strong> through automated ETL pipeline development and query optimization using T-SQL window functions, CTEs, and stored procedures</li>
                     </ul>
                 </div>
                 <a href="https://github.com/shivangsagwaliya/Bank-Loan-Analytics" class="project-image-container" style="display:block;">
-                    <img src="https://raw.githubusercontent.com/shivangsagwaliya/Bank-Loan-Analytics/main/dashboard_images/Overview.PNG" alt="Bank Loan Analytics">
+                    <img src="https://raw.githubusercontent.com/shivangsagwaliya/ShivangSagwaliya.github.io/main/images/Medallion_architecture.webp" alt="TechSolutionsCorp Data Warehouse">
                 </a>
             </div>
 
               <div class="project">
-                <div class="project-title">Customer Churn Analysis & Strategic Retention <a href="https://github.com/shivangsagwaliya/Marketing-Data-Cleaning" class="project-link"><i class="fab fa-github"></i></a></div>
+                <div class="project-title">Tech Solutions Corp: Sales & Supply Chain Exploratory Data Analysis | Python, Numpy, Pandas, Seaborn, Matplotlib , Jupyter Notebook <a href="https://github.com/shivangsagwaliya/tech_solutions_corp_EDA" class="project-link"><i class="fab fa-github"></i></a></div>
                 <div class="project-desc">
-                    <p>Performed Exploratory Data Analysis using python to detect what are the main reasons behind the customer churn and what measures to take to prevent that.</p>
+                    <p>Analyzed a complex dataset of 192,921 records across 5 distinct data sources (Orders, Customers, Employees, Products, Suppliers) to evaluate business performance. The project focused on data integrity, feature engineering, and extracting actionable insights.</p>
                      <ul>
-                        <li><strong>High-Risk Demographic:</strong> Senior Citizens churn at 42%, nearly double the rate of non-seniors (24%), indicating a need for targeted retention plans.</li>
-                        <li><strong>Service & Support:</strong> Customers with Fiber Optic internet or those lacking Online Security/Tech Support both show a staggering 40% churn rate.</li>
-                        <li><strong>Contract Friction:</strong> Month-to-month contracts and Electronic Check payments were identified as the leading indicators of early customer attrition.</li>
+                         <li><strong>Financial Health:</strong> Validated overall profitability of $356.66M, with high-value transactions showing a strong correlation (0.86) to profit.</li>
+                        <li><strong>Sector Performance:</strong> Healthcare ($241M) and Telecommunications emerged as the strongest industries.</li>
+                        <li><strong>Logistics Efficiency:</strong> Calculated an average fulfillment timeline of 8.82 days, with a low return rate of 2% and cancellation rate of 3%, indicating a highly efficient supply chain.</li>
+                        <li><strong>Geographic Dominance:</strong> Identified New York as the primary revenue driver (>$205M sales), while flagging Ohio and Michigan as critical underperformers requiring strategic intervention.</li>
                     </ul>
                 </div>
                 <a href="https://github.com/shivangsagwaliya/Customer_Churn_EDA" class="project-image-container" style="display:block;">
-                    <img src="https://raw.githubusercontent.com/shivangsagwaliya/Customer_Churn_EDA/main/Thumbnail.png" alt="Python_EDA">
-                </a>
-            </div>
-
-            <div class="project">
-                <div class="project-title">Data Warehouse Architecture <a href="https://github.com/shivangsagwaliya/sql-data-warehouse" class="project-link"><i class="fab fa-github"></i></a></div>
-                <div class="project-desc">
-                    <p>Engineered a centralized SQL Datawarehouse using medallion architecture with automated pipelines for data cleaning, standardization, and transformation.</p>
-                </div>
-                <a href="https://github.com/shivangsagwaliya/sql-data-warehouse" class="project-image-container" style="display:block;">
-                    <img src="https://raw.githubusercontent.com/shivangsagwaliya/ShivangSagwaliya.github.io/main/images/Medallion_architecture.webp" alt="Data Warehouse Architecture">
+                    <img src="https://raw.githubusercontent.com/shivangsagwaliya/tech_solutions_corp_EDA/main/Thumbnail.png" alt="Python_EDA">
                 </a>
             </div>
 
              <div class="project">
+                <div class="project-title">Tech Solutions Corp Sales & Operations Intelligence Dashboard | Power BI, DAX <a href="https://github.com/shivangsagwaliya/tech_solutions_corp_dashboard" class="project-link"><i class="fab fa-github"></i></a></div>
+                <div class="project-desc">
+                    <p>Designed and developed a comprehensive executive dashboard for "Tech Solutions Corp" to visualize end-to-end business performance. The analysis covers 193,000 orders generating $2.39 billion in revenue, providing stakeholders with actionable insights into sales trends, employee productivity, and supply chain efficiency.</p>
+                    <ul>
+                        <li><strong>Sales & Product Strategy:</strong>
+                            <ul>
+                                <li>Software Licenses are the highest-performing category ($29M), significantly outperforming hardware like Keyboards ($2M).</li>
+                                <li>Software Licenses offer the highest Customer Lifetime Value (CLV) at 63K.</li>
+                                <li>New York office contributes 39.16% of total revenue</li>
+                            </ul>
+                        </li>
+                        <li><strong>Workforce Efficiency:</strong> Evaluated performance for 150 employees with an average revenue per employee of $15.94M.</li>
+                        <li><strong>Operational Health:</strong> Monitored supply chain logistics, revealing an average Order Fulfillment Time of 8.82 days (3 days processing + 5.81 days delivery), cancellation rate of 2.99% and a return rate of 2.04%, identifying Office Chairs as the product with the highest cancellation volume.</li>
+                    </ul>
+                </div>
+                 <div class="slider-wrapper">
+                    <div class="slides-container" id="housing-slides">
+                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/tech_solutions_corp_dashboard/main/images/01_Overview.PNG" class="slide-img active" alt="Overview">
+                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/tech_solutions_corp_dashboard/main/images/02_Sales.PNG" class="slide-img" alt="Sales Performance">
+                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/tech_solutions_corp_dashboard/main/images/03_Employees_Performance.PNG" class="slide-img" alt="Employee Performance">
+                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/tech_solutions_corp_dashboard/main/images/04_Operations.PNG" class="slide-img" alt="Operations">
+                    </div>
+                    <button class="slider-btn prev-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-btn next-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                    <div class="slide-indicators">
+                        <span class="slide-dot active" onclick="goToSlide(0)"></span>
+                        <span class="slide-dot" onclick="goToSlide(1)"></span>
+                        <span class="slide-dot" onclick="goToSlide(2)"></span>
+                        <span class="slide-dot" onclick="goToSlide(3)"></span>
+                    </div>
+                </div>
+            </div>
+
+
+             <!-- <div class="project">
                 <div class="project-title"> Netflix Exploratory Data Analysis <a href="https://github.com/shivangsagwaliya/netflix_sql_project/" class="project-link"><i class="fab fa-github"></i></a></div>
                 <div class="project-desc">
                     <p>Leveraged SQL to analyze Netflix's content library, uncovering trends in genre popularity, release patterns, and regional preferences to drive data-backed content strategies.</p>
@@ -403,8 +464,8 @@
                 <a href="https://github.com/shivangsagwaliya/netflix_sql_project/" class="project-image-container" style="display:block;">
                      <img src="https://raw.githubusercontent.com/shivangsagwaliya/netflix_sql_project/main/Logo/netflix_logo.png" alt="Netflix Logo">
                 </a>
-            </div>
-            <div class="project">
+            </div> -->
+            <!-- <div class="project">
                 <div class="project-title">Marketing Data Cleaning <a href="https://github.com/shivangsagwaliya/Marketing-Data-Cleaning" class="project-link"><i class="fab fa-github"></i></a></div>
                 <div class="project-desc">
                     <p>Engineered a robust data cleaning pipeline using Python and Pandas to standardize messy marketing campaign data, resolving inconsistencies in currency, datetime logic, and categorical integrity.</p>
@@ -427,31 +488,8 @@
                 <a href="https://github.com/shivangsagwaliya/Smart-Logistics-Delay-Report" class="project-image-container" style="display:block;">
                     <img src="https://raw.githubusercontent.com/shivangsagwaliya/Smart-Logistics-Delay-Report/main/Logistics_Report.PNG" alt="Smart Logistics Dashboard">
                 </a>
-            </div>
-            
-            <div class="project">
-                <div class="project-title">Housing Data Analysis <a href="https://github.com/shivangsagwaliya/Housing-Data-Analysis" class="project-link"><i class="fab fa-github"></i></a></div>
-                <div class="project-desc">
-                    <p>A comprehensive market analysis report analyzing over 13 Billion in revenue across major regions. Key focus on Sales Performance, Regional Distribution, and Economic Indicators.</p>
-                    <ul>
-                        <li><strong>Market Overview:</strong> Analyzed 13bn in revenue with an average deal size of 2M. Sales heavily dominated by Villa properties (38%).</li>
-                        <li><strong>Regional Dominance:</strong> Identified Zealand (95bn) and Jutland (81bn) as the primary revenue drivers.</li>
-                        <li><strong>Economic Impact:</strong> Evaluated the correlation between Inflation, Interest Rates, and Rental Yields across property types (Farm vs Apartments).</li>
-                    </ul>
-                </div>
-
-                
-                <div class="slider-wrapper">
-                    <div class="slides-container" id="housing-slides">
-                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/Housing-Data-Analysis/main/Dashboard/Housing_1.PNG" class="slide-img active" alt="Market Overview">
-                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/Housing-Data-Analysis/main/Dashboard/Housing_2.PNG" class="slide-img" alt="Sales Performance">
-                        <img src="https://raw.githubusercontent.com/shivangsagwaliya/Housing-Data-Analysis/main/Dashboard/Housing_3.PNG" class="slide-img" alt="Economic Indicators">
-                    </div>
-                    <button class="slider-btn prev-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-                    <button class="slider-btn next-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-
+            </div> -->
+                           
         </section>
 
         <section id="contact" style="border-top: 1px solid var(--border); padding-top: 3rem;">
@@ -480,25 +518,60 @@
 
         // --- IMAGE SLIDER LOGIC ---
         let currentSlide = 0;
-        function changeSlide(direction) {
-            const slides = document.querySelectorAll('.slide-img');
-            const totalSlides = slides.length;
+        const slides = document.querySelectorAll('.slide-img');
+        const dots = document.querySelectorAll('.slide-dot');
+        const totalSlides = slides.length;
+
+        function updateSlide(newIndex) {
+            if (totalSlides === 0) return;
             
-            // Remove active class from current
+            // Remove active class from current slide and dot
             slides[currentSlide].classList.remove('active');
+            if (dots[currentSlide]) {
+                dots[currentSlide].classList.remove('active');
+            }
             
-            // Calculate new index
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            // Update current index
+            currentSlide = newIndex;
             
-            // Add active class to new
+            // Add active class to new slide and dot
             slides[currentSlide].classList.add('active');
+            if (dots[currentSlide]) {
+                dots[currentSlide].classList.add('active');
+            }
         }
+
+        function changeSlide(direction) {
+            if (totalSlides === 0) return;
+            
+            // Calculate new slide index
+            let newIndex = currentSlide + direction;
+            
+            // Wrap around
+            if (newIndex >= totalSlides) {
+                newIndex = 0;
+            } else if (newIndex < 0) {
+                newIndex = totalSlides - 1;
+            }
+            
+            updateSlide(newIndex);
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < totalSlides) {
+                updateSlide(index);
+            }
+        }
+
+        // Optional: Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
     </script>
 
 </body>
 </html>
-
-
-
-
-
